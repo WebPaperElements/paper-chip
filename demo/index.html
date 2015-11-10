@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>paper-avatar-image Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../paper-styles/paper-styles.html">
+    <link rel="import" href="../../paper-material/paper-material.html">
+    <link rel="import" href="../../paper-styles/classes/global.html">
+    <link rel="import" href="../../iron-icons/iron-icons.html">
+    <link rel="import" href="../paper-chip.html">
+  </head>
+  <body unresolved>
+    <template is="dom-bind" id="app">
+      <style is="custom-style">
+        body {
+          background-color: var(--light-primary-color);
+        }
+
+        paper-material {
+          background-color: var(--primary-background-color);
+          margin: 24px;
+          padding: 16px;
+        }
+        
+        .horizontal-section {
+          min-height: 100px;
+        }
+
+        .horizontal-section > paper-avatar-image {
+          margin: 24px;
+        }
+        
+        paper-material paper-chip {
+          margin-right: 16px;
+        }
+      </style>
+  
+      <h1>An example of <code>&lt;paper-chip&gt;</code>:</h1>
+
+      <paper-material class="scroll fixed bottom">
+        <h3>Settings:</h3>
+        <div class="vertical layout">
+        </div>
+      </paper-material>
+
+      <paper-material>
+        <h3>An basic example of <code>&lt;paper-chip&gt;</code>:</h3>
+        <div class="horizontal-section horizontal layout">
+          <paper-chip no-image>
+            <h1>John Doe</h1>
+            <h2>jdoe@example.com</h2>
+          </paper-chip>
+          <paper-chip no-image removable>
+            <h1>John Doe</h1>
+            <h2>jdoe@example.com</h2>
+          </paper-chip>
+          <paper-chip>
+            <div class="icon">J</div>
+            <h1>John Doe</h1>
+            <h2>jdoe@example.com</h2>
+          </paper-chip>
+          <paper-chip removable>
+            <iron-icon class="icon" icon="android"></iron-icon>
+            <h1>John Doe</h1>
+            <h2>jdoe@example.com</h2>
+          </paper-chip>
+        </div>
+      </paper-material>
+
+      <paper-material>
+        <h3>An openable example of <code>&lt;paper-chip&gt;</code>:</h3>
+        <div class="horizontal-section horizontal layout">
+          <paper-chip no-image openable="true">
+            <h1>John Doe</h1>
+            <h2>jdoe@example.com</h2>
+          </paper-chip>
+          <paper-chip no-image removable  openable="true">
+            <h1>John Doe</h1>
+            <h2>jdoe@example.com</h2>
+          </paper-chip>
+          <paper-chip  openable="true">
+            <div class="icon">J</div>
+            <h1>John Doe</h1>
+            <h2>jdoe@example.com</h2>
+          </paper-chip>
+          <paper-chip removable openable="true">
+            <iron-icon class="icon" icon="android"></iron-icon>
+            <h1>John Doe</h1>
+            <h2>jdoe@example.com</h2>
+          </paper-chip>
+        </div>
+      </paper-material>
+
+      <paper-material>
+        <h3>An animated openable example of <code>&lt;paper-chip&gt;</code>:</h3>
+        <div class="horizontal-section horizontal layout">
+          <paper-chip no-image openable="true" animated>
+            <h1>John Doe</h1>
+            <h2>jdoe@example.com</h2>
+          </paper-chip>
+          <paper-chip no-image removable  openable="true" animated>
+            <h1>John Doe</h1>
+            <h2>jdoe@example.com</h2>
+          </paper-chip>
+          <paper-chip  openable="true"  animated>
+            <div class="icon">J</div>
+            <h1>John Doe</h1>
+            <h2>jdoe@example.com</h2>
+          </paper-chip>
+          <paper-chip removable openable="true"  animated>
+            <iron-icon class="icon" icon="android"></iron-icon>
+            <h1>John Doe</h1>
+            <h2>jdoe@example.com</h2>
+          </paper-chip>
+        </div>
+      </paper-material>
+      
+      <script>
+        
+        window.addEventListener('WebComponentsReady', function() {
+          
+          var app = document.querySelector('#app');
+          
+        });
+      </script>
+    </template>
+  </body>
+</html>
