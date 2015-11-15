@@ -1,0 +1,94 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="paper-chip-behavior.html">
+
+<script>
+
+  var WebPaperElem = WebPaperElem || {};
+
+  WebPaperElem.PaperContactChipBehaviorImpl = {
+    properties: {
+      /**
+        * Whether or not the chip support an opened state.
+        * 
+        * @attribute opened
+        * @type boolean
+        * @default false
+        */
+      openable: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true,
+        notify: true
+      },
+
+      /**
+        * Whether or not the chip is in its opened state.
+        * 
+        * @attribute opened
+        * @type boolean
+        * @default false
+        */
+      opened: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true,
+        notify: true,
+      },
+
+      /**
+        * Whether or not the chip state is "active". If `true`, the main chip
+        * area will be highlighted when in the opened state.
+        *
+        * @attribute active
+        * @type boolean
+        * @default false
+        */
+      active: {
+        type: Boolean,
+        value: false,
+        notify: true,
+        reflectToAttribute: true
+      },
+
+      elevation: {
+        type: Number,
+        computed: '_computeElevation(opened, focused, disabled, active, pressed)'
+      },
+    },
+
+    _computeElevation: function(opened, focused, pressed) {
+      if (focused || pressed) {
+        return 1;
+      }
+      if (opened) {
+        return 4;
+      }
+      return 0;
+    },
+
+    listeners: {
+      up: '_upAction',
+      blur: '_blurAction'
+    },
+    
+    _upAction: function() {
+      if (this.openable) {
+        this.toggleOpened();
+      }
+    },
+    
+    _blurAction: function() {
+      this.opened = false;
+    },
+      
+    toggleOpened: function() {
+      this.opened = !this.opened;
+    },
+  };
+  
+  WebPaperElem.PaperContactChipBehavior = [ 
+    WebPaperElem.PaperChipBehavior,
+    WebPaperElem.PaperContactChipBehaviorImpl 
+  ];
+
+</script>

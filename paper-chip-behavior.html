@@ -1,0 +1,69 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-behaviors/iron-button-state.html">
+<link rel="import" href="../iron-behaviors/iron-control-state.html">
+
+<script>
+
+  var WebPaperElem = WebPaperElem || {};
+
+  WebPaperElem.PaperChipBehaviorImpl = {
+    properties: {
+      /**
+        * Chip Label.
+        * 
+        * @attribute label
+        * @type String
+        */
+      label: {
+        type: String,
+        reflectToAttribute: true
+      },
+
+      /**
+        * Whether or not the chip is removable. If `true`, a delete button should
+        * be shown.
+        * 
+        * @attribute removable
+        * @type boolean
+        * @default false
+        */
+      removable: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true
+      },
+
+      elevation: {
+        type: Number,
+        reflectToAttribute: true,
+        computed: '_computeElevation(focused, disabled, active, pressed)'
+      },
+    },
+
+    _computeElevation: function(focused, pressed) {
+      if (focused || pressed) {
+        return 2;
+      }
+      return 0;
+    },
+
+    /**
+      * Fired before the element is removed. This event is cancelable.
+      * 
+      * @event remove
+      */
+    remove: function() {
+      var e = this.fire('remove', {}, {cancelable: true});
+      if (!e.defaultPrevented) {
+        this.parentNode.removeChild(this);
+      }
+    },
+  };
+  
+  WebPaperElem.PaperChipBehavior = [ 
+    Polymer.IronButtonState,
+    Polymer.IronControlState,
+    WebPaperElem.PaperChipBehaviorImpl 
+  ];
+
+</script>

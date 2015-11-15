@@ -10,6 +10,7 @@
     <link rel="import" href="../../paper-styles/classes/global.html">
     <link rel="import" href="../../iron-icons/iron-icons.html">
     <link rel="import" href="../paper-chip.html">
+    <link rel="import" href="../paper-contact-chip.html">
   </head>
   <body unresolved>
     <template is="dom-bind" id="app">
@@ -32,7 +33,8 @@
           margin: 24px;
         }
         
-        paper-material paper-chip {
+        paper-material paper-chip
+        ,paper-material paper-contact-chip {
           margin-right: 16px;
         }
       </style>
@@ -48,72 +50,51 @@
       <paper-material>
         <h3>An basic example of <code>&lt;paper-chip&gt;</code>:</h3>
         <div class="horizontal-section horizontal layout">
-          <paper-chip no-image>
-            <h1>John Doe</h1>
-            <h2>jdoe@example.com</h2>
-          </paper-chip>
-          <paper-chip no-image removable>
-            <h1>John Doe</h1>
-            <h2>jdoe@example.com</h2>
-          </paper-chip>
-          <paper-chip>
+          <paper-chip label="John Doe" no-image></paper-chip>
+          <paper-chip label="John Doe" no-image deletable></paper-chip>
+          <paper-chip label="John Doe">
             <div class="icon">J</div>
-            <h1>John Doe</h1>
-            <h2>jdoe@example.com</h2>
           </paper-chip>
-          <paper-chip removable>
+          <paper-chip label="John Doe" deletable>
             <iron-icon class="icon" icon="android"></iron-icon>
-            <h1>John Doe</h1>
-            <h2>jdoe@example.com</h2>
+          </paper-chip>
+          <paper-chip label="John Doe" deletable>
+            <iron-icon class="icon" src="http://lorempixel.com/32/32/"></iron-icon>
           </paper-chip>
         </div>
       </paper-material>
 
       <paper-material>
-        <h3>An openable example of <code>&lt;paper-chip&gt;</code>:</h3>
+        <h3>An basic example of <code>&lt;paper-contact-chip&gt;</code>:</h3>
         <div class="horizontal-section horizontal layout">
-          <paper-chip no-image openable="true">
-            <h1>John Doe</h1>
-            <h2>jdoe@example.com</h2>
-          </paper-chip>
-          <paper-chip no-image removable  openable="true">
-            <h1>John Doe</h1>
-            <h2>jdoe@example.com</h2>
-          </paper-chip>
-          <paper-chip  openable="true">
+          <paper-contact-chip label="John Doe" no-image openable></paper-contact-chip>
+          <paper-contact-chip label="John Doe" no-image openable deletable></paper-contact-chip>
+          <paper-contact-chip label="John Doe" openable>
             <div class="icon">J</div>
-            <h1>John Doe</h1>
-            <h2>jdoe@example.com</h2>
-          </paper-chip>
-          <paper-chip removable openable="true">
+          </paper-contact-chip>
+          <paper-contact-chip label="John Doe" openable deletable>
             <iron-icon class="icon" icon="android"></iron-icon>
-            <h1>John Doe</h1>
-            <h2>jdoe@example.com</h2>
-          </paper-chip>
+          </paper-contact-chip>
+          <paper-contact-chip label="John Doe" openable deletable>
+            <iron-icon class="icon" src="http://lorempixel.com/32/32/"></iron-icon>
+          </paper-contact-chip>
         </div>
       </paper-material>
 
       <paper-material>
-        <h3>An animated openable example of <code>&lt;paper-chip&gt;</code>:</h3>
+        <h3>An animated example of <code>&lt;paper-contact-chip&gt;</code>:</h3>
         <div class="horizontal-section horizontal layout">
-          <paper-chip no-image openable="true" animated>
-            <h1>John Doe</h1>
-            <h2>jdoe@example.com</h2>
-          </paper-chip>
-          <paper-chip no-image removable  openable="true" animated>
-            <h1>John Doe</h1>
-            <h2>jdoe@example.com</h2>
-          </paper-chip>
-          <paper-chip  openable="true"  animated>
+          <paper-contact-chip label="John Doe" no-image openable animated></paper-contact-chip>
+          <paper-contact-chip label="John Doe" no-image openable animated deletable></paper-contact-chip>
+          <paper-contact-chip label="John Doe" openable animated>
             <div class="icon">J</div>
-            <h1>John Doe</h1>
-            <h2>jdoe@example.com</h2>
-          </paper-chip>
-          <paper-chip removable openable="true"  animated>
+          </paper-contact-chip>
+          <paper-contact-chip label="John Doe" openable animated deletable>
             <iron-icon class="icon" icon="android"></iron-icon>
-            <h1>John Doe</h1>
-            <h2>jdoe@example.com</h2>
-          </paper-chip>
+          </paper-contact-chip>
+          <paper-contact-chip label="John Doe" openable animated deletable>
+            <iron-icon class="icon" src="http://lorempixel.com/32/32/"></iron-icon>
+          </paper-contact-chip>
         </div>
       </paper-material>
       
