@@ -52,16 +52,26 @@
 
       elevation: {
         type: Number,
-        computed: '_computeElevation(opened, focused, disabled, active, pressed)'
+        reflectToAttribute: true,
+        computed: '_computeElevation(opened, focused, pressed, disabled, active)'
       },
+    },
+    
+    set __opened(newValue) {
+      this.opened = newValue;
+    },
+
+    get __opened() {
+      return this.opened;
     },
 
     _computeElevation: function(opened, focused, pressed) {
-      if (focused || pressed) {
-        return 1;
-      }
       if (opened) {
         return 4;
+      }
+
+      if (focused || pressed) {
+        return 1;
       }
       return 0;
     },
@@ -78,11 +88,11 @@
     },
     
     _blurAction: function() {
-      this.opened = false;
+      this.__opened = false;
     },
       
     toggleOpened: function() {
-      this.opened = !this.opened;
+      this.__opened = (!this.__opened);
     },
   };
   

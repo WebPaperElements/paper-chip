@@ -33,7 +33,7 @@ Basic chip with single letter instead of an icon
 -->
 <dom-module id="paper-chip">
   <template>
-    <style include="paper-material">
+    <style>
       :host {
         display: inline-block;
         vertical-align: top;
@@ -49,6 +49,10 @@ Basic chip with single letter instead of an icon
         font-family: 'Roboto', 'Noto', sans-serif;
                 
         @apply(--paper-chip);
+      }
+      
+      paper-material#paperContainer {
+        border-radius: 16px;
       }
       
       .main-container {
@@ -138,8 +142,8 @@ Basic chip with single letter instead of an icon
         display: none;
       }
       .remove-btn {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
         border-radius: 50%;
         cursor: pointer;
         background-color: var(--paper-chip-removebtn-background-color, --paper-grey-500);
@@ -150,27 +154,29 @@ Basic chip with single letter instead of an icon
       .remove-btn iron-icon {
         padding: 2px;
         
-        --iron-icon-height: 16px;
-        --iron-icon-width: 16px;
+        height: 16px;
+        width: 16px;
       }
     </style>
     <iron-a11y-keys keys="space enter" on-keys-pressed="toggleOpened"></iron-a11y-keys>
     <iron-a11y-keys keys="del" on-keys-pressed="remove"></iron-a11y-keys>
-    <div class="main-container">
-      <div class="chip-container">
-        <div class="icon-container">
-          <content select=".icon"></content>
-        </div>
-        <div class="label-container">
-          <span class="chip-label">[[label]]</span>
-        </div>
-        <div class="remove-btn-container">
-          <div class="remove-btn" on-tap="remove" aria-label="remove button">
-            <iron-icon icon="close"></iron-icon>
+    <paper-material id="paperContainer" elevation="[[elevation]]">
+      <div class="main-container">
+        <div class="chip-container">
+          <div class="icon-container">
+            <content select=".icon"></content>
+          </div>
+          <div class="label-container">
+            <span class="chip-label">[[label]]</span>
+          </div>
+          <div class="remove-btn-container">
+            <div class="remove-btn" on-tap="remove" aria-label="remove button">
+              <iron-icon icon="close"></iron-icon>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </paper-material>
   </template>
 
   <script>

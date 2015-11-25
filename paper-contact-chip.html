@@ -33,11 +33,18 @@ Basic chip with single letter instead of an icon
 -->
 <dom-module id="paper-contact-chip">
   <template>
-    <style include="paper-chip">
-      :host([animated]),
-      :host([animated]) *,
-      :host([animated]) ::content * {
-        transition: all 200ms ease-in;
+    <style include="paper-chip">      
+      :host(:not([opened])) {
+        height: 32px;
+      }
+      
+      :host(:not([opened])) .content-container {
+        display: none;
+        min-height: 40px;
+      }
+
+      :host(:not([opened])) .label-container .chip-label {
+        font-size: 14px;
       }
       
       /* initially hidden elements */
@@ -47,53 +54,48 @@ Basic chip with single letter instead of an icon
         height: 0;
       }
 
-      .label-container ::content h2 {
-        margin: 0;
-        font-size: 14px;
-        white-space: nowrap;
-        font-weight: normal;
+      /* Opened state */
+
+      :host([opened]) paper-material#paperContainer {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 10;
       }
 
-      /* pressed state */
-      :host(:not([opened])) .content-container {
-        width: 0;
-        height: 0;
-        min-width: 100%;
-        overflow: hidden;
+      :host([opened]) .main-container {
+        padding-top: 16px;
+        padding-bottom: 16px;
+      }
+
+      :host([opened]) .icon-container {
+        padding-left: 12px;
       }
       
-      /* opened state */
-      :host([opened]) {
-        border-radius: 0; 
-        height: 72px;
+      :host([opened]) paper-material#paperContainer
+      , :host([opened]) .main-container
+      , :host([opened]) .chip-container {
+        border-radius: 0;
       }
 
       :host([opened]) .main-container
       , :host([opened]) .chip-container {
-        border-radius: 0;
+        height: 40px;
+        width: 296px;
       }
-      :host([opened]) .content-container {
-        height: auto;
-        width: auto;
-        min-width: 100%;
-        overflow: hidden;
-      }
-      :host([opened]) .chip-container {
-        height: 72px;
-      }
-      :host([opened]) .chip-container
-      ,:host([opened]) .content-container ::content > * {
-        padding: 16px 12px;
-        background-color: var(--paper-chip-opened-background-color, --paper-grey-50);
-      }
-      :host([opened]) .label-container ::content h1 {
-        color: var(--paper-chip-primary-text-color, --primary-text-color);
+
+      :host([opened]) .label-container .chip-label {
         font-size: 16px;
       }
-      :host([opened]) .remove-btn {
-        background-color: var(--paper-chip-removebtn-background-color, --paper-grey-600);
-        color: var(--paper-chip-removebtn-icon-color, --text-primary-color);
+
+      :host([opened][removable]) .remove-btn-container {
+        padding-right: 6px;
       }
+      :host([opened][removable]) .remove-btn {
+        width: 20px;
+        height: 20px;
+      }
+      
       :host([opened]) .icon-container {
         width: 40px;
         height: 40px;
@@ -105,44 +107,36 @@ Basic chip with single letter instead of an icon
         height: 40px;
         line-height: 40px;
       }
-      /* open + active state */
-      :host([opened][active]) .chip-container,
-      :host([opened][active]) ::content {
-        background-color: var(--paper-chip-active-color, --accent-color);
-        color: var(--paper-chip-active-text-color, --text-primary-color);
+      
+      :host([animated]) *,
+      :host([animated]) ::content * {
+        transition: all 0.2s ease 0s;
       }
-      :host([opened][active]) .remove-btn {
-        background-color: var(--paper-chip-active-text-color, --text-primary-color);
-        color: var(--paper-chip-active-color, --accent-color);
-      }
-      :host([opened][active]) .chip-container .label-container .chip-label {
-        color: var(--paper-chip-active-text-color, --text-primary-color);
-      }
-      :host([opened][active]) .chip-container .label-container ::content h2 {
-        color: var(--paper-chip-active-secondary-text-color, --text-primary-color);
-      }
+
     </style>
     <iron-a11y-keys keys="space enter" on-keys-pressed="toggleOpened"></iron-a11y-keys>
     <iron-a11y-keys keys="del" on-keys-pressed="remove"></iron-a11y-keys>
-    <div class="main-container">
-      <div class="chip-container">
-        <div class="icon-container">
-          <content select=".icon"></content>
-        </div>
-        <div class="label-container">
-          <span class="chip-label">[[label]]</span>
-          <content select="h2"></content>
-        </div>
-        <div class="remove-btn-container">
-          <div class="remove-btn" on-tap="remove" aria-label="remove button">
-            <iron-icon icon="close"></iron-icon>
+    <paper-material id="paperContainer" elevation="[[elevation]]" animated="[[animated]]">
+      <div class="main-container">
+        <div class="chip-container">
+          <div class="icon-container">
+            <content select=".icon"></content>
+          </div>
+          <div class="label-container">
+            <span class="chip-label">[[label]]</span>
+            <content select="h2"></content>
+          </div>
+          <div class="remove-btn-container">
+            <div class="remove-btn" on-tap="remove" aria-label="remove button">
+              <iron-icon icon="close"></iron-icon>
+            </div>
           </div>
         </div>
+        <div id="contentContainer" class="content-container">
+          <content></content>
+        </div>
       </div>
-      <div id="contentContainer" class="content-container">
-        <content></content>
-      </div>
-    </div>
+    </paper-material>
   </template>
 
   <script>
@@ -152,6 +146,16 @@ Basic chip with single letter instead of an icon
       behaviors: [
         WebPaperElem.PaperContactChipBehavior
       ],
+
+      /* WebPaperElem.PaperContactChipBehavior overrides */
+
+      set __opened(newValue) {
+        this._opened = newValue;
+      },
+
+      get __opened() {
+        return this._opened;
+      },
 
       hostAttributes: {
         tabindex: '0'
@@ -172,45 +176,27 @@ Basic chip with single letter instead of an icon
           reflectToAttribute: true
         },
 
-        /**
-          * Whether or not the chip is in its opened state.
-          * 
-          * @attribute opened
-          * @type boolean
-          * @default false
-          */
-        opened: {
+        _opened: {
           type: Boolean,
           value: false,
-          reflectToAttribute: true,
-          notify: true,
           observer: '_openedChanged'
         },
       },
 
-      _openedChanged: function() {
+      _openedChanged: function (newValue) {
+        
+        var thisRect = this.getBoundingClientRect();
+        
+        if (newValue) {
+          this.style.width = thisRect.width + 'px';       
+          this.style.height = thisRect.height + 'px';  
+        }
+        
+        this.opened = newValue;
+        
         if (!this.animated) {
           return;
         }
-        var $content, width, height;
-        $content = this.$.contentContainer;
-        width = height = '';
-        if (this.opened) {
-          // temporarily disable transitions in order to take measurements of
-          // the content area, allowing for a proper css transision.
-          this.animated = false;
-          this.opened = true;
-          width = $content.offsetWidth + 'px';
-          height = $content.offsetHeight + 'px';
-          this.opened = false;
-          this._forceReflow();
-          this.opened = true;
-          this.animated = true;
-        }
-        this.style.width = width;
-        this.style.height = height;
-        $content.style.width = width;
-        $content.style.height = height;
       },
                   
       ready: function() {
@@ -219,10 +205,7 @@ Basic chip with single letter instead of an icon
           this.$.removeBtn.removeAttribute('tabindex');
         }
       },
-
-      _forceReflow: function() {
-        return this.offsetHeight;
-      }
+      
     });
   </script>
 

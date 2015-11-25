@@ -33,16 +33,25 @@
         reflectToAttribute: true
       },
 
+      /**
+       * The z-depth of this element, from 0-5. Setting to 0 will remove the
+       * shadow, and each increasing number greater than 0 will be "deeper"
+       * than the last.
+       *
+       * @attribute elevation
+       * @type number
+       * @default 1
+       */
       elevation: {
         type: Number,
         reflectToAttribute: true,
-        computed: '_computeElevation(focused, disabled, active, pressed)'
+        computed: '_computeElevation(focused, pressed, disabled, active)'
       },
     },
 
     _computeElevation: function(focused, pressed) {
       if (focused || pressed) {
-        return 2;
+        return 1;
       }
       return 0;
     },
