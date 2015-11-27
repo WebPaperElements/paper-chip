@@ -19,7 +19,9 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.1.0",
-    "iron-a11y-keys": "PolymerElements/iron-a11y-keys#~1.0.4"
+    "iron-a11y-keys": "PolymerElements/iron-a11y-keys#~1.0.4",
+    "iron-menu-behavior": "PolymerElements/iron-menu-behavior#~1.0.6",
+    "paper-item": "PolymerElements/paper-item#~1.1.2"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

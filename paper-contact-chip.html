@@ -4,6 +4,7 @@
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../paper-item/paper-item.html">
 <link rel="import" href="../paper-styles/paper-styles.html">
 
 <link rel="import" href="paper-chip.html">
@@ -34,7 +35,8 @@ Basic chip with single letter instead of an icon
 <dom-module id="paper-contact-chip">
   <template>
     <style include="paper-chip">      
-      :host(:not([opened])) {
+      :host(:not([opened])) .main-container
+      , :host(:not([opened])) .chip-container {
         height: 32px;
       }
       
@@ -52,6 +54,10 @@ Basic chip with single letter instead of an icon
         color: var(--paper-chip-secondary-text-color, --secondary-text-color);
         font-size: 0;
         height: 0;
+      }
+      
+      :host(:not([opened])) .selectable-content {
+        display: none;
       }
 
       /* Opened state */
@@ -80,7 +86,7 @@ Basic chip with single letter instead of an icon
 
       :host([opened]) .main-container
       , :host([opened]) .chip-container {
-        height: 40px;
+        height: auto;
         width: 296px;
       }
 
@@ -113,6 +119,29 @@ Basic chip with single letter instead of an icon
         transition: all 0.2s ease 0s;
       }
 
+      /* need a wrapper element to make this higher specificity than the :host rule in paper-item */
+      .selectable-content > .iron-selected {
+        font-weight: bold;
+        @apply(--paper-menu-selected-item);
+      }
+      .selectable-content > [disabled] {
+        color: var(--paper-menu-disabled-color, --disabled-text-color);
+      }
+      .selectable-content > *:focus {
+        position: relative;
+        outline: 0;
+        @apply(--paper-menu-focused-item);
+      }
+      .selectable-content > *:focus:after {
+        @apply(--layout-fit);
+        background: currentColor;
+        opacity: var(--dark-divider-opacity);
+        content: '';
+        @apply(--paper-menu-focused-item-after);
+      }
+      .selectable-content > *[colored]:focus:after {
+        opacity: 0.26;
+      }
     </style>
     <iron-a11y-keys keys="space enter" on-keys-pressed="toggleOpened"></iron-a11y-keys>
     <iron-a11y-keys keys="del" on-keys-pressed="remove"></iron-a11y-keys>
@@ -123,7 +152,7 @@ Basic chip with single letter instead of an icon
             <content select=".icon"></content>
           </div>
           <div class="label-container">
-            <span class="chip-label">[[label]]</span>
+            <span class="chip-label">[[label]]<span> ([[selected]])</span></span>
             <content select="h2"></content>
           </div>
           <div class="remove-btn-container">
@@ -133,8 +162,10 @@ Basic chip with single letter instead of an icon
           </div>
         </div>
         <div id="contentContainer" class="content-container">
-          <content></content>
         </div>
+      </div>
+      <div class="selectable-content">
+        <content></content>
       </div>
     </paper-material>
   </template>
@@ -144,6 +175,7 @@ Basic chip with single letter instead of an icon
       is: 'paper-contact-chip',
       
       behaviors: [
+        Polymer.IronMenuBehavior,
         WebPaperElem.PaperContactChipBehavior
       ],
 
@@ -193,6 +225,11 @@ Basic chip with single letter instead of an icon
         }
         
         this.opened = newValue;
+
+        if (!newValue) {
+          this.style.width = '';       
+          this.style.height = '';  
+        }
         
         if (!this.animated) {
           return;
@@ -206,6 +243,9 @@ Basic chip with single letter instead of an icon
         }
       },
       
+      _filterItem: function(node) {
+        return node.hasAttribute("selectable");
+      },
     });
   </script>
 

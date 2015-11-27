@@ -53,6 +53,7 @@ Basic chip with single letter instead of an icon
       
       paper-material#paperContainer {
         border-radius: 16px;
+        background-color: var(--paper-chip-background-color, white);
       }
       
       .main-container {
@@ -184,6 +185,8 @@ Basic chip with single letter instead of an icon
       is: 'paper-chip',
       
       behaviors: [
+        Polymer.IronButtonState,
+        Polymer.IronControlState,
         WebPaperElem.PaperChipBehavior
       ],
 
