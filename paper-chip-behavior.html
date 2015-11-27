@@ -9,6 +9,18 @@
   WebPaperElem.PaperChipBehaviorImpl = {
     properties: {
       /**
+        * Toggle to display the image.
+        * 
+        * @attribute no-image
+        * @type Boolean
+        */
+      noImage: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true,
+      },
+
+      /**
         * Chip Label.
         * 
         * @attribute label
