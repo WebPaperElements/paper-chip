@@ -12,6 +12,11 @@
       return node.hasAttribute("selectable");
     },
 
+    hostAttributes: {
+      'role': 'menu',
+      'tabindex': '0'
+    },
+
     properties: {
       /**
         * Whether or not the chip support an opened state.
@@ -129,8 +134,9 @@
     
     _upAction: function(e) {
       //console.debug('[PaperContactChipBehavior[_upAction]]', e);
-      
-      if (e.target.hasAttribute("selectable")) return;
+      if (e.target.hasAttribute("selectable")) {
+        return;
+      }
       
       if (this.openable) {
         this.toggleOpened();
@@ -148,6 +154,18 @@
       this.__opened = (!this.__opened);
     },
 
+    open: function() {
+      if (!this.__opened) {
+        this.__opened = true;
+      }
+    },
+
+    close: function() {
+      if (this.__opened) {
+        this.__opened = false;
+      }
+    },
+    
     attached: function() {
       this._resetTabindices();
     },
@@ -167,6 +185,7 @@
       if (item && item.hasAttribute('disabled')) return;
       this._setFocusedItem(item);
       Polymer.IronMultiSelectableBehaviorImpl.select.apply(this, arguments);
+      this.close();
     },
 
     /**
@@ -309,20 +328,8 @@
       // NOTE(cdata): polymer/polymer#1305
       }, 1);
     },
-
-    /**
-     * Handler that is called when the menu receives focus.
-     *
-     * @param {FocusEvent} event A focus event.
-     */
-    _onFocus: function(event) {
-      // if (this._shiftTabPressed) {
-      //   return;
-      // }
-      // // do not focus the menu itself
-      // this.blur();
-      // clear the cached focus item
-      this._setFocusedItem(null);
+    
+    _setFocusOnSelectedItem: function () {
       this._defaultFocusAsync = this.async(function() {
         // focus the selected item when the menu receives focus, or the first item
         // if no item is selected
@@ -334,6 +341,17 @@
         }
       // async 100ms to wait for `select` to get called from `_itemActivate`
       }, 100);
+    },
+
+    /**
+     * Handler that is called when the menu receives focus.
+     *
+     * @param {FocusEvent} event A focus event.
+     */
+    _onFocus: function(event) {
+      // clear the cached focus item
+      this._setFocusedItem(null);
+      this._setFocusOnSelectedItem();
     },
 
     /**
@@ -382,6 +400,8 @@
   };  
   
   WebPaperElem.PaperContactChipBehavior = [ 
+    Polymer.IronButtonState,
+    Polymer.IronControlState,
     Polymer.IronMultiSelectableBehavior,
     WebPaperElem.PaperChipBehavior,
     WebPaperElem.PaperContactChipBehaviorImpl 

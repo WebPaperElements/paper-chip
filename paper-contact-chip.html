@@ -175,8 +175,6 @@ Basic chip with single letter instead of an icon
       is: 'paper-contact-chip',
       
       behaviors: [
-        Polymer.IronButtonState,
-        Polymer.IronControlState,
         WebPaperElem.PaperContactChipBehavior
       ],
 
@@ -188,10 +186,6 @@ Basic chip with single letter instead of an icon
 
       get __opened() {
         return this._opened;
-      },
-
-      hostAttributes: {
-        tabindex: '0'
       },
       
       properties: {
