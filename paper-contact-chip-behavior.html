@@ -9,6 +9,7 @@
   WebPaperElem.PaperContactChipBehaviorImpl = {
     
     _filterItem: function(node) {
+      //console.info(node);
       return node.hasAttribute("selectable");
     },
 
@@ -248,6 +249,7 @@
      * menu.
      */
     _focusNext: function() {
+      // console.debug('[_focusNext]',this.selectableItems);
       var index = (Number(this.items.indexOf(this.focusedItem)) + 1) % this.items.length;
       this._setFocusedItem(this.items[index]);
     },
