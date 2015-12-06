@@ -175,7 +175,8 @@ Basic chip with single letter instead of an icon
       is: 'paper-contact-chip',
       
       behaviors: [
-        Polymer.IronMenuBehavior,
+        Polymer.IronButtonState,
+        Polymer.IronControlState,
         WebPaperElem.PaperContactChipBehavior
       ],
 
@@ -219,14 +220,12 @@ Basic chip with single letter instead of an icon
         
         var thisRect = this.getBoundingClientRect();
         
+        this.opened = newValue;
+
         if (newValue) {
           this.style.width = thisRect.width + 'px';       
           this.style.height = thisRect.height + 'px';  
-        }
-        
-        this.opened = newValue;
-
-        if (!newValue) {
+        } else {
           this.style.width = '';       
           this.style.height = '';  
         }
@@ -241,10 +240,6 @@ Basic chip with single letter instead of an icon
           // disable tabindex on remove button so that tabindex can be used for chips
           this.$.removeBtn.removeAttribute('tabindex');
         }
-      },
-      
-      _filterItem: function(node) {
-        return node.hasAttribute("selectable");
       },
     });
   </script>
