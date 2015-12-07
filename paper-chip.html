@@ -7,7 +7,6 @@
 <link rel="import" href="../paper-styles/paper-styles.html">
 
 <link rel="import" href="paper-chip-behavior.html">
-
 <!--
 Material Design: [Chips](http://www.google.com/design/spec/components/chips.html)
 
@@ -18,17 +17,14 @@ They can contain a photo, short title string, and brief information.
 
 deletable chip with iron-icon
 
-    <paper-chip deletable>
-      <iron-icon class="icon" icon="avatars:avatar-1"></iron-icon>
-      <h1>John Doe</h1>
-      <h2>jdoe@example.com</h2>
+    <paper-chip label="John Doe" deletable>
+      <iron-icon class="icon" icon="android"></iron-icon>
     </paper-chip>
 
 Basic chip with single letter instead of an icon
 
     <paper-chip label="Jane Doe">
       <div class="icon">J</div>
-      <h1>jdoe@example.com</h1>
     </paper-chip>
 -->
 <dom-module id="paper-chip">
@@ -185,18 +181,9 @@ Basic chip with single letter instead of an icon
       is: 'paper-chip',
       
       behaviors: [
-        Polymer.IronButtonState,
-        Polymer.IronControlState,
         WebPaperElem.PaperChipBehavior
       ],
-
-      hostAttributes: {
-        tabindex: '0'
-      },
       
-      properties: {
-      },
-                  
       ready: function() {
         if (this.$.removeBtn) {
           // disable tabindex on remove button so that tabindex can be used for chips

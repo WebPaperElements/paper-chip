@@ -6,7 +6,18 @@
 
   var WebPaperElem = WebPaperElem || {};
 
+  /**
+   * `WebPaperElem.PaperChipBehavior` implements paper-chip behavior.
+   *
+   * @demo demo/index.html
+   * @polymerBehavior WebPaperElem.PaperChipBehavior
+   */
   WebPaperElem.PaperChipBehaviorImpl = {
+
+    hostAttributes: {
+      tabindex: '0'
+    },
+
     properties: {
       /**
         * Toggle to display the image.
@@ -66,7 +77,6 @@
     ],
 
     _computeElevation: function(focused, pressed) {
-      //console.debug('[PaperChipBehavior[_computeElevation]]');
       if (focused || pressed) {
         this.elevation = 1;
       } else {
@@ -88,6 +98,8 @@
   };
   
   WebPaperElem.PaperChipBehavior = [ 
+    Polymer.IronButtonState,
+    Polymer.IronControlState,
     WebPaperElem.PaperChipBehaviorImpl 
   ];
 
