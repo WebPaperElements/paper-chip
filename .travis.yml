@@ -6,6 +6,8 @@ before_script:
   - 'export PATH=$PWD/node_modules/.bin:$PATH'
   - bower install
 node_js: 4
+branches:
+  except: gh-pages
 addons:
   firefox: latest
   apt:
