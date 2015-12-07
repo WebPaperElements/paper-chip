@@ -1,18 +1,20 @@
 {
   "name": "paper-chip",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "authors": [
     "Vinicius Patrinhani <patrinhani@ciandt.com>"
   ],
-  "description": "An element providing a solution to no problem in particular.",
+  "description": "Material Design Chip component built with Polymer.",
   "keywords": [
     "web-component",
     "polymer",
-    "seed"
+    "paper-chip",
+    "material design",
+    "chip"
   ],
   "main": "paper-chip.html",
-  "license": "http://polymer.github.io/LICENSE.txt",
-  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "license": "https://raw.githubusercontent.com/WebPaperElements/paper-chip/master/LICENSE.md",
+  "homepage": "https://github.com/WebPaperElements/paper-chip/",
   "ignore": [
     "/.*",
     "/test/"
