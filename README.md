@@ -2,6 +2,8 @@
 
 An element providing a starting point for your own reusable Polymer elements.
 
+[![Build Status](https://travis-ci.org/WebPaperElements/paper-chip.svg?branch=master)](https://travis-ci.org/WebPaperElements/paper-chip)
+
 
 ## Dependencies
 
