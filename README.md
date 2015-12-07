@@ -1,6 +1,8 @@
-# paper-chip
+##&lt;paper-chip&gt;
 
-An element providing a starting point for your own reusable Polymer elements.
+
+Material design: [Chip](http://www.google.com.br/design/spec/components/chips.html)
+
 
 ## Dependencies
 
