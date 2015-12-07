@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/WebPaperElements/paper-chip.svg?branch=master)](https://travis-ci.org/WebPaperElements/paper-chip)
 
 [Docs](http://webpaperelements.github.io/paper-chip/components/paper-chip/)
+
 [DEMO](http://webpaperelements.github.io/paper-chip/components/paper-chip/demo/)
 
 ##&lt;paper-chip&gt;
