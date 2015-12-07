@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/WebPaperElements/paper-chip.svg?branch=master)](https://travis-ci.org/WebPaperElements/paper-chip)
+
 ##&lt;paper-chip&gt;
 
 
