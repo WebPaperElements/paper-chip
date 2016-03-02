@@ -76,6 +76,7 @@ Basic chip with single letter instead of an icon
       }
             
       .icon-container {
+        font-size: 16px;
         width: 32px;
         height: 32px;
         @apply(--layout-horizontal);
@@ -90,7 +91,6 @@ Basic chip with single letter instead of an icon
         overflow: hidden;
         text-align: center;
         vertical-align: middle;
-        font-size: 16px;
         font-weight: bold;
         background-color: var(--paper-chip-icon-background-color, --secondary-text-color);
         color: var(--paper-chip-icon-text-color, --text-primary-color);
@@ -112,6 +112,8 @@ Basic chip with single letter instead of an icon
         padding-left: 8px;
         @apply(--layout-flex-auto);
         @apply(--layout-self-center);
+        
+        @apply(--paper-chip-label-container);
       }
       :host([no-image]) .label-container {
         padding-left: 12px;
@@ -122,7 +124,6 @@ Basic chip with single letter instead of an icon
       }
       .label-container .chip-label {
         margin: 0;
-        font-size: 13px;
         font-weight: normal;
         color: var(--paper-chip-label-text-color, --paper-grey-900);
       }
@@ -155,7 +156,6 @@ Basic chip with single letter instead of an icon
         width: 16px;
       }
     </style>
-    <iron-a11y-keys keys="space enter" on-keys-pressed="toggleOpened"></iron-a11y-keys>
     <iron-a11y-keys keys="del" on-keys-pressed="remove"></iron-a11y-keys>
     <paper-material id="paperContainer" elevation="[[elevation]]">
       <div class="main-container">
