@@ -49,13 +49,13 @@ Basic chip with single letter instead of an icon
       
       paper-material#paperContainer {
         border-radius: 16px;
-        background-color: var(--paper-chip-background-color, white);
+        background-color: var(--paper-chip-background-color, #fff);
       }
       
       .main-container {
         background-color: var(--paper-chip-background-color, --paper-grey-300);
         position: relative;
-        color: var(--paper-chip-secondary-text-color, --secondary-text-color);
+        color: var(--paper-chip-secondary-text-color, --paper-grey-600);
         @apply(--layout-vertical);
       }
       /* pressed state */
@@ -92,8 +92,8 @@ Basic chip with single letter instead of an icon
         text-align: center;
         vertical-align: middle;
         font-weight: bold;
-        background-color: var(--paper-chip-icon-background-color, --secondary-text-color);
-        color: var(--paper-chip-icon-text-color, --text-primary-color);
+        background-color: var(--paper-chip-icon-background-color, --paper-grey-600);
+        color: var(--paper-chip-icon-text-color, #fff);
         @apply(--layout-flex);
       }
       .icon-container ::content .icon svg {
