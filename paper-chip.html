@@ -50,6 +50,7 @@ Basic chip with single letter instead of an icon
       paper-material#paperContainer {
         border-radius: 16px;
         background-color: var(--paper-chip-background-color, #fff);
+        @apply(--paper-chip-paper-container);
       }
       
       .main-container {
@@ -156,7 +157,7 @@ Basic chip with single letter instead of an icon
         width: 16px;
       }
     </style>
-    <iron-a11y-keys keys="del" on-keys-pressed="remove"></iron-a11y-keys>
+    <iron-a11y-keys keys="delele" on-keys-pressed="remove"></iron-a11y-keys>
     <paper-material id="paperContainer" elevation="[[elevation]]">
       <div class="main-container">
         <div class="chip-container">
