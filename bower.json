@@ -20,8 +20,8 @@
     "/test/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.1.0",
-    "iron-a11y-keys": "PolymerElements/iron-a11y-keys#^1.0.5",
+    "polymer": "^1.1.0",
+    "iron-a11y-keys": "^1.0.5",
     "iron-behaviors": "PolymerElements/iron-behaviors#^1.0.0",
     "iron-icon": "PolymerElements/iron-icon#^1.0.0",
     "iron-iconset-svg": "PolymerElements/iron-iconset-svg#^1.0.0",
