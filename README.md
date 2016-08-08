@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/WebPaperElements/paper-chip.svg?branch=master)](https://travis-ci.org/WebPaperElements/paper-chip)
 
+[![Dependency Status](https://gemnasium.com/badges/github.com/WebPaperElements/paper-chip.svg)](https://gemnasium.com/github.com/WebPaperElements/paper-chip)
+
 [Docs](http://webpaperelements.github.io/paper-chip/components/paper-chip/)
 
 [DEMO](http://webpaperelements.github.io/paper-chip/components/paper-chip/demo/)
