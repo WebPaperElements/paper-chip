@@ -30,17 +30,20 @@ Basic chip with single letter instead of an icon
 <dom-module id="paper-chip">
   <template>
     <style>
+      :root {
+        
+      }
       :host {
         display: inline-block;
         vertical-align: top;
         position: relative;
         outline: none;
-        font-size: 14px;
+        font-size: calc(var(--paper-chip-height, 32px) / 2);
         cursor: default;
         margin: 8px 0;
-        height: 32px;
+        height: calc(calc(var(--paper-chip-height, 32px) / 2) - 4);
         overflow: visible;
-        border-radius: 16px;
+        border-radius: calc(var(--paper-chip-height, 32px) / 2);
         
         font-family: 'Roboto', 'Noto', sans-serif;
                 
@@ -48,7 +51,7 @@ Basic chip with single letter instead of an icon
       }
       
       paper-material#paperContainer {
-        border-radius: 16px;
+        calc(var(--paper-chip-height, 32px) / 2);
         background-color: var(--paper-chip-background-color, #fff);
         @apply(--paper-chip-paper-container);
       }
@@ -66,28 +69,28 @@ Basic chip with single letter instead of an icon
 
       .chip-container {
         box-sizing: border-box;
-        height: 32px;
+        height: var(--paper-chip-height, 32px);
         @apply(--layout-horizontal);
         @apply(--layout-center);
       }
 
       .main-container
       ,.icon-container {
-        border-radius: 16px;
+        border-radius: calc(var(--paper-chip-height, 32px) / 2);
       }
             
       .icon-container {
-        font-size: 16px;
-        width: 32px;
-        height: 32px;
+        font-size: calc(var(--paper-chip-height, 32px) / 2);
+        width: var(--paper-chip-height, 32px);
+        height: var(--paper-chip-height, 32px);
         @apply(--layout-horizontal);
         @apply(--layout-center);
         @apply(--layout-center-justified);
       }
       .icon-container ::content .icon {
-        width: 32px;
-        height: 32px;
-        line-height: 32px;
+        width: var(--paper-chip-height, 32px);
+        height: var(--paper-chip-height, 32px);
+        line-height: var(--paper-chip-height, 32px);
         border-radius: 100%;
         overflow: hidden;
         text-align: center;
@@ -130,8 +133,8 @@ Basic chip with single letter instead of an icon
       }
       
       .remove-btn-container {
-        width: 24px;
-        height: 24px;
+        width: calc(var(--paper-chip-height, 32px) / 3 * 2);
+        height: calc(var(--paper-chip-height, 32px) / 3 * 2);
         margin-left: 0px;
         margin-right: 4px;
         @apply(--layout-horizontal);
@@ -141,8 +144,8 @@ Basic chip with single letter instead of an icon
         display: none;
       }
       .remove-btn {
-        width: 16px;
-        height: 16px;
+        width: calc(var(--paper-chip-height, 32px) / 2);
+        height: calc(var(--paper-chip-height, 32px) / 2);
         border-radius: 50%;
         cursor: pointer;
         background-color: var(--paper-chip-removebtn-background-color, --paper-grey-500);
@@ -153,8 +156,8 @@ Basic chip with single letter instead of an icon
       .remove-btn iron-icon {
         padding: 2px;
         
-        height: 16px;
-        width: 16px;
+        height: calc(var(--paper-chip-height, 32px) / 2);
+        width: calc(var(--paper-chip-height, 32px) / 2);
       }
     </style>
     <iron-a11y-keys keys="del" on-keys-pressed="remove"></iron-a11y-keys>
