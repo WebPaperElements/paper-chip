@@ -32,6 +32,17 @@
       },
 
       /**
+        * Data sent in remove event
+        * 
+        * @attribute data
+        * @type Object
+        */
+        data: {
+        type: Object,
+        value : {}
+      },
+
+      /**
         * Chip Label.
         * 
         * @attribute label
@@ -90,7 +101,7 @@
       * @event remove
       */
     remove: function() {
-      var e = this.fire('remove', {}, {cancelable: true});
+      var e = this.fire('remove', this.data, {cancelable: true});
       if (!e.defaultPrevented) {
         this.parentNode.removeChild(this);
       }
